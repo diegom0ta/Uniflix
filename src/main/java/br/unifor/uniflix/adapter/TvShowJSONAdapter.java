@@ -4,10 +4,10 @@ import org.json.JSONObject;
 
 import br.unifor.uniflix.model.TvShow;
 
-public class TvShowJSONAdapter implements TvShowJSON {
+public class TvShowJSONAdapter extends JSONAdapter<TvShow> {
 
 	@Override
-	public TvShow getTvShow(JSONObject jsonObject) {
+	public TvShow adapter(JSONObject jsonObject) {
 		
 		TvShow tvShow = new TvShow();
         tvShow.setNome(jsonObject.getString("name"));
@@ -18,4 +18,5 @@ public class TvShowJSONAdapter implements TvShowJSON {
 		return tvShow;
 	}
 
+	
 }

@@ -24,14 +24,11 @@ public class UniFlixFacade {
 		RequestFactory rf = new RequestFactory();
 		Call call = rf.requestCreate(path);
 		okhttp3.Response response = call.execute();
-		TvShowJSON tvShowAdapter = new TvShowJSONAdapter();
+		TvShowJSONAdapter tvShowAdapter = new TvShowJSONAdapter();
 		JSONObject jsonResponse = new  JSONObject(response.body().string());
 	    JSONArray jsonArray = jsonResponse.getJSONArray("results");
-	    List<TvShow> tvShows = new ArrayList<>();
-	    for (int i = 0; i < jsonArray.length(); ++i) {
-	        JSONObject tvShowJson = jsonArray.getJSONObject(i);
-	        tvShows.add(tvShowAdapter.getTvShow(tvShowJson));  
-	    }
+	    List<TvShow> tvShows = tvShowAdapter.adapterJsonArray(jsonArray);
+	    
 	    return tvShows;
 		
 	}
@@ -43,15 +40,11 @@ public class UniFlixFacade {
     	RequestFactory rf = new RequestFactory();
     	Call call = rf.requestCreate(path);
     	okhttp3.Response response = call.execute();
-    	FilmeJSON filmeAdapter = new FilmeJSONAdapter();
+    	FilmeJSONAdapter filmeAdapter = new FilmeJSONAdapter();
     	JSONObject jsonResponse = new JSONObject(response.body().string());
         JSONArray jsonArray = jsonResponse.getJSONArray("results");
-        List<Filme> filmes = new ArrayList<>();
-        for (int i = 0; i < jsonArray.length(); ++i) {
-            JSONObject movieJson = jsonArray.getJSONObject(i);
-            filmes.add(filmeAdapter.getFilme(movieJson));  
-        }
-    	
+        List<Filme> filmes = filmeAdapter.adapterJsonArray(jsonArray);
+        
 		return filmes;
 	}
 	

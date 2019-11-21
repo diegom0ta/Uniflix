@@ -4,10 +4,10 @@ import org.json.JSONObject;
 
 import br.unifor.uniflix.model.Filme;
 
-public class FilmeJSONAdapter implements FilmeJSON{
+public class FilmeJSONAdapter extends JSONAdapter<Filme>{
 
 	@Override
-	public Filme getFilme(JSONObject jsonObject) {	
+	public Filme adapter(JSONObject jsonObject) {	
 	
 		Filme filme = new Filme();
         filme.setTitulo(jsonObject.getString("title"));
